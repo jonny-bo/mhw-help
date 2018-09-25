@@ -17,7 +17,10 @@ return [
             ],
         ],
         'service' => [
-            'class' => 'mhw\services\Service'
+            'class' => 'mhw\services\Service',
+            'providers' => [
+                'mhw\services\ServiceProvider',
+            ]
         ]
     ],
 ];

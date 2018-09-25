@@ -3,6 +3,7 @@ namespace mhw\services;
 
 use yii\base\InvalidCallException;
 use yii\base\InvalidConfigException;
+// use yii\base\Component;
 
 class Service implements \ArrayAccess
 {

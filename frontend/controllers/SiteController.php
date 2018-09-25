@@ -19,7 +19,7 @@ use mhw\services\ServiceProvider;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends BaseController
 {
     /**
      * {@inheritdoc}
@@ -53,37 +53,13 @@ class SiteController extends Controller
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
-        ];
-    }
-
-    /**
      * Displays homepage.
      *
      * @return mixed
      */
     public function actionIndex()
     {
-        $service = new Service();
-        $service['mhw'] = 'hello mhw';
-        $service['testHander'] = function ($service) {
-            return new TestHander($service);
-        };
-        $service['test']->do(); // TestService->do();
-        $service->register(new ServiceProvider($service));
-
-        var_dump($service->keys());
+        $this->service('test')->do();
         exit;
 
         return $this->render('index');

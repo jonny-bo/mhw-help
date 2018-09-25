@@ -15,6 +15,6 @@ class TestService
 
     public function do()
     {
-        return $this->service['mhw'];
+        echo "hello world";
     }
 }
