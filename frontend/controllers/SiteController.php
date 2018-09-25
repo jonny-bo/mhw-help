@@ -12,6 +12,9 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use mhw\services\Service;
+use mhw\services\Hander\TestHander;
+use mhw\services\ServiceProvider;
 
 /**
  * Site controller
@@ -72,6 +75,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $service = new Service();
+        $service['mhw'] = 'hello mhw';
+        $service['testHander'] = function ($service) {
+            return new TestHander($service);
+        };
+        $service['test']->do(); // TestService->do();
+        $service->register(new ServiceProvider($service));
+
+        var_dump($service->keys());
+        exit;
+
         return $this->render('index');
     }
 
